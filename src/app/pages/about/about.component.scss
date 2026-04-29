@@ -1,0 +1,132 @@
+.about {
+  padding: 40px 40px 60px;
+}
+
+.about__inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  grid-template-rows: auto 1fr;
+  gap: 24px 40px;
+  background: linear-gradient(135deg, #FFF5E4 0%, #F5E6FF 100%);
+  border-radius: 1.5rem;
+  padding: 48px;
+  box-shadow: 0 4px 16px rgba(84, 1, 110, 0.15);
+}
+
+.about__title-block {
+  grid-column: 1;
+  grid-row: 1;
+  background: #FFF2BF;
+  border-radius: 59px;
+  padding: 16px 32px;
+  display: inline-block;
+  align-self: center;
+  justify-self: center;
+}
+
+.about__photo {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.about__content {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about__title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 50px;
+  font-weight: normal;
+  line-height: 35px;
+  color: #54016E;
+  margin: 0;
+}
+
+.about__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin: 0;
+  }
+}
+
+.about__photo {
+  flex: 0 0 380px;
+  max-width: 380px;
+}
+
+.about__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  display: block;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .about {
+    padding: 30px 30px 50px;
+  }
+
+  .about__inner {
+    grid-template-columns: 1fr 260px;
+    gap: 20px 28px;
+    padding: 32px;
+  }
+
+  .about__title {
+    font-size: 40px;
+  }
+
+  .about__text p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 20px 20px 40px;
+  }
+
+  .about__inner {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .about__title-block {
+    grid-column: unset;
+    grid-row: unset;
+  }
+
+  .about__photo {
+    grid-column: unset;
+    grid-row: unset;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .about__content {
+    grid-column: unset;
+    grid-row: unset;
+  }
+
+  .about__title {
+    font-size: 30px;
+  }
+
+  .about__text p {
+    font-size: 14px;
+  }
+}

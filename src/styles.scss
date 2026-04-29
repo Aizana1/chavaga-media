@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+@font-face {
+  font-family: 'NauryzRedKeds';
+  src: url('assets/fonts/NAURYZREDKEDS.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary: #7C3AED;
+  --primary-light: #EDE9FF;
+  --primary-dark: #2D0060;
+  --text-dark: #1a1a2e;
+  --text-white: #ffffff;
+  --footer-bg: #E8DEFF;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  background: #fff;
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

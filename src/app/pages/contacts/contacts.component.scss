@@ -1,0 +1,120 @@
+.contacts {
+  position: relative;
+  padding: 123px 40px 0;
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+}
+
+.contacts__inner {
+  display: flex;
+  gap: 40px;
+}
+
+.contacts__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contacts__title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 35px;
+  font-weight: normal;
+  line-height: 1;
+  color: #4C0263;
+}
+
+.contacts__text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #4C0263;
+  margin: 0;
+}
+
+.contacts__link {
+  color: #4C0263;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &--bold {
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.contacts__photo {
+  position: absolute;
+  bottom: 0;
+  right: 40px;
+  width: 576px;
+}
+
+.contacts__photo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .contacts {
+    padding-top: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .contacts__title {
+    font-size: 28px;
+  }
+
+  .contacts__text {
+    font-size: 15px;
+  }
+
+  .contacts__photo {
+    width: 400px;
+    right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contacts {
+    padding: 40px 20px 0;
+    overflow: visible;
+    min-height: unset;
+  }
+
+  .contacts__inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .contacts__content {
+    gap: 20px;
+  }
+
+  .contacts__title {
+    font-size: 18px;
+    align-self: center;
+  }
+
+  .contacts__text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .contacts__photo {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}

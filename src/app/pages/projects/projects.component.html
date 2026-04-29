@@ -1,0 +1,22 @@
+<section class="projects">
+  <div class="projects__bg">
+    <img src="assets/images/projects-bg.svg" alt="" class="projects__bg-img projects__bg-img--left" aria-hidden="true">
+    <img src="assets/images/projects-bg.svg" alt="" class="projects__bg-img projects__bg-img--right" aria-hidden="true">
+  </div>
+
+  <div class="projects__inner">
+    <h1 class="projects__title">{{ lang.translations().projects.title }}</h1>
+
+    <div class="projects__list">
+      <a
+        *ngFor="let item of lang.translations().projects.items; let i = index"
+        routerLink="/"
+        class="projects__item"
+      >
+        <img [src]="ornaments[i]" alt="" class="projects__ornament projects__ornament--left" aria-hidden="true">
+        <span class="projects__item-label">{{ item }}</span>
+        <img [src]="ornaments[i]" alt="" class="projects__ornament projects__ornament--right" aria-hidden="true">
+      </a>
+    </div>
+  </div>
+</section>

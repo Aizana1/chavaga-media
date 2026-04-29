@@ -1,0 +1,27 @@
+<section class="rubrics">
+
+  <!-- Декоративные фоны -->
+  <div class="rubrics__bg-deco-wrap">
+    <img src="assets/images/rubrics-bg1.svg" alt="" class="rubrics__bg-deco rubrics__bg-deco--left" aria-hidden="true">
+    <img src="assets/images/rubrics-bg1.svg" alt="" class="rubrics__bg-deco rubrics__bg-deco--right" aria-hidden="true">
+  </div>
+  <img src="assets/images/yurt.svg" alt="" class="rubrics__bg-yurt" aria-hidden="true">
+  <img src="assets/images/rubrics-bg1.svg" alt="" class="rubrics__bg-deco-bottom" aria-hidden="true">
+
+  <!-- Контент -->
+  <div class="rubrics__inner">
+    <h1 class="rubrics__title">{{ lang.translations().rubrics.title }}</h1>
+
+    <div class="rubrics__grid">
+      <a
+        *ngFor="let item of lang.translations().rubrics.items; let i = index"
+        [routerLink]="['/rubrics', slugs[i]]"
+        class="rubrics__item"
+      >
+        <img [src]="icons[i]" [alt]="item.label" class="rubrics__item-icon">
+        <span class="rubrics__item-label">{{ item.label }}</span>
+      </a>
+    </div>
+  </div>
+
+</section>

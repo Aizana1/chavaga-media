@@ -1,0 +1,30 @@
+<section class="merch">
+
+  <!-- Фоновый контейнер -->
+  <div class="merch__bg-wrap">
+    <img src="assets/images/merch-bg1.svg" alt="" class="merch__bg-left" aria-hidden="true">
+    <div class="merch__bg-right">
+      <img src="assets/images/merch-bg2.svg" alt="" class="merch__bg-right-top" aria-hidden="true">
+      <img src="assets/images/merch-bg3.svg" alt="" class="merch__bg-right-bottom" aria-hidden="true">
+    </div>
+  </div>
+
+  <!-- Контент -->
+  <div class="merch__inner">
+    <h1 class="merch__title">{{ lang.translations().merch.title }}</h1>
+
+    <div class="merch__grid">
+      <a
+        *ngFor="let item of lang.translations().merch.items; let i = index"
+        href="#"
+        class="merch__card"
+      >
+        <div class="merch__card-content">
+          <img [src]="images[i]" [alt]="item.label" class="merch__card-img">
+          <span class="merch__card-label">{{ item.label }}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</section>
