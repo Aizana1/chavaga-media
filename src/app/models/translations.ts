@@ -90,7 +90,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       items: [
         { label: 'КОМИКСЫ' },
         { label: 'СТИКЕРЫ' },
-        { label: 'СУЕТ-КАЛЕНДАРЬ' },
+        { label: 'ФЕМ-КАЛЕНДАРЬ' },
         { label: 'КАЛЕНДАРЬ\nШАГАА-2026' },
       ],
     },
@@ -146,10 +146,10 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     merch: {
       title: 'МЕРЧ',
       items: [
-        { label: 'КОМИКСТАР' },
+        { label: 'КОМИКСТЕР' },
         { label: 'СТИКЕРЛЕР' },
-        { label: 'СУЕТ-ХҮНЗЕЛГЕЗИ' },
-        { label: 'ШАГАА-2026\nХҮНЗЕЛГЕЗИ' },
+        { label: 'ФЕМ-КАЛЕНДАРЬ' },
+        { label: 'ШАГАА-2026\nКАЛЕНДАРЬ' },
       ],
     },
     contacts: {

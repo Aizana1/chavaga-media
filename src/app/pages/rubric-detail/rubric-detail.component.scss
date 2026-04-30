@@ -17,17 +17,48 @@
   object-fit: cover;
   object-position: bottom;
   pointer-events: none;
+}
+
+.rubric-detail__bg-viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 80px);
+  pointer-events: none;
   z-index: 0;
+  overflow: hidden;
+}
+
+.rubric-detail__bg-deco-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1280px;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
 }
 
 .rubric-detail__bg-deco {
-  position: absolute;
-  top: 0;
-  right: 0;
   height: 100%;
   width: auto;
-  pointer-events: none;
-  z-index: 0;
+  display: block;
+
+  &--left {
+    transform-origin: left top;
+  }
+
+  &--right {
+    transform: scaleX(-1);
+  }
+}
+
+.rubric-detail__bg-deco-bottom {
+  display: none;
 }
 
 .rubric-detail__inner {
@@ -46,10 +77,15 @@
   justify-content: center;
 }
 
-.rubric-detail__rubric-icon {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
+.rubric-detail__rubric-title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+  color: #4C0263;
+  text-align: center;
+  line-height: 35px;
+  padding-top: 40px;
+  padding-bottom: 75px;
 }
 
 .rubric-detail__grid {
@@ -61,8 +97,9 @@
 
 .rubric-detail__card {
   width: 100%;
-  height: 124px;
-  border-radius: 20px;
+  min-height: 84px;
+  height: auto;
+  border-radius: 50px;
   background: rgba(233, 211, 251, 0.9);
   box-shadow: 0 8px 24px rgba(76, 2, 99, 0.18);
   border: 2px solid transparent;
@@ -88,6 +125,7 @@
   &--empty {
     cursor: default;
     pointer-events: none;
+    height: 84px;
 
     &:hover {
       transform: none;
@@ -110,22 +148,17 @@
   display: block;
 }
 
-.rubric-detail__card-img-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(210, 168, 248, 0.35) 0%, rgba(233, 211, 251, 0.5) 100%);
-}
-
 .rubric-detail__card-title {
-  padding: 0 28px;
-  font-family: 'NauryzRedKeds', sans-serif;
+  padding: 12px 28px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 20px;
-  font-weight: normal;
+  font-weight: 600;
   color: #4C0263;
   line-height: 35px;
   flex: 1;
   display: flex;
   align-items: center;
+  text-transform: uppercase;
 
   &--placeholder {
     font-size: 28px;
@@ -173,10 +206,7 @@
 
 .rubric-detail__article {
   width: 100%;
-  background: rgba(255, 255, 255, 0.88);
-  border-radius: 24px;
   padding: 40px 48px;
-  box-shadow: 0 8px 32px rgba(76, 2, 99, 0.12);
   animation: fadeSlideIn 0.3s ease;
 }
 
@@ -186,11 +216,11 @@
 }
 
 .rubric-detail__article-title {
-  font-family: 'NauryzRedKeds', sans-serif;
-  font-size: 28px;
-  font-weight: normal;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
   color: #4C0263;
-  line-height: 1.3;
+  line-height: 35px;
   margin: 0 0 8px;
 }
 
@@ -206,31 +236,60 @@
   gap: 16px;
 }
 
-.rubric-detail__article-para {
-  font-size: 16px;
-  line-height: 1.75;
-  color: #2a002e;
-  margin: 0;
-  text-indent: 2em;
+:host ::ng-deep .rubric-detail__article-body {
+  p {
+    font-size: 20px;
+    line-height: 1.75;
+    color: #4C0263;
+    margin: 0;
+    text-indent: 2em;
+  }
+
+  figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px auto;
+    width: 100%;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    figcaption {
+      margin-top: 8px;
+      font-size: 20px;
+      color: #4C0263;
+      text-align: center;
+      font-style: italic;
+    }
+  }
 }
 
 @media (max-width: 1024px) and (min-width: 769px) {
+  .rubric-detail__bg-deco-bottom {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 450px;
+    object-fit: contain;
+    object-position: bottom center;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .rubric-detail__inner {
     padding: 50px 40px 70px;
   }
 
-  .rubric-detail__card {
-    height: 100px;
-  }
-
-  .rubric-detail__card-img-wrap {
-    width: 100px;
-    height: 100px;
-  }
-
   .rubric-detail__card-title {
     font-size: 17px;
-    padding: 0 20px;
+    padding: 12px 20px;
   }
 
   .rubric-detail__article {
@@ -243,42 +302,69 @@
     align-items: flex-start;
   }
 
+  .rubric-detail__bg-deco-wrap {
+    display: none;
+  }
+
+  .rubric-detail__bg-yurt {
+    width: 120%;
+    max-width: none;
+    height: auto;
+    top: 80px;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    object-position: top;
+  }
+
+  .rubric-detail__bg-deco-bottom {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 450px;
+    object-fit: contain;
+    object-position: bottom center;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .rubric-detail__inner {
     padding: 40px 16px 60px;
     gap: 24px;
   }
 
-  .rubric-detail__rubric-icon {
-    height: 56px;
-  }
-
-  .rubric-detail__card {
-    height: 90px;
-    border-radius: 16px;
-  }
-
-  .rubric-detail__card-img-wrap {
-    width: 90px;
-    height: 90px;
+  .rubric-detail__rubric-title{
+    font-size: 21px;
+    padding-bottom: 39px;
   }
 
   .rubric-detail__card-title {
     font-size: 14px;
     line-height: 1.4;
-    padding: 0 16px;
+    padding: 12px 16px;
+    text-transform: capitalize;
   }
 
   .rubric-detail__article {
     padding: 24px 20px;
-    border-radius: 16px;
+    border-radius: 50px;
   }
 
   .rubric-detail__article-title {
     font-size: 20px;
   }
 
-  .rubric-detail__article-para {
-    font-size: 14px;
-    line-height: 1.7;
+  :host ::ng-deep .rubric-detail__article-body {
+    p {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    figure figcaption {
+      font-size: 12px;
+    }
   }
 }

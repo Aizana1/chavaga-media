@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { LanguageService } from '../../services/language.service';
 import { Article } from '../../models/article.model';
 import { ARTICLES } from '../../data/articles.data';
@@ -16,8 +17,9 @@ import { RUBRIC_SLUGS } from '../../data/rubrics.data';
 export class RubricDetailComponent implements OnInit {
   lang = inject(LanguageService);
   route = inject(ActivatedRoute);
+  sanitizer = inject(DomSanitizer);
 
-  readonly ITEMS_PER_PAGE = 3;
+  readonly ITEMS_PER_PAGE = 5;
 
   slug = signal('');
   allArticles = signal<Article[]>([]);
@@ -48,6 +50,12 @@ export class RubricDetailComponent implements OnInit {
   });
 
   currentLang = computed(() => this.lang.language());
+
+  safeBody = computed((): SafeHtml => {
+    const article = this.selectedArticle();
+    if (!article) return '';
+    return this.sanitizer.bypassSecurityTrustHtml(article.body[this.currentLang()]);
+  });
 
   ngOnInit() {
     this.route.params.subscribe(params => {

@@ -18,6 +18,7 @@
   pointer-events: none;
   max-height: 730px;
   height: 100%;
+  padding-top: 100px;
 }
 
 .merch__bg-left {
@@ -150,6 +151,13 @@
   }
 }
 
+@media (max-width: 1024px) and (min-width: 769px) {
+  .merch__bg-wrap {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
 @media (max-width: 768px) {
   .merch {
     align-items: flex-start;
@@ -158,6 +166,7 @@
 
   .merch__bg-wrap {
     flex-direction: column;
+    justify-content: flex-end;
   }
 
   .merch__bg-left {

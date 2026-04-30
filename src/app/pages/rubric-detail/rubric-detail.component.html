@@ -1,17 +1,20 @@
 <section class="rubric-detail">
 
-  <!-- Фоны -->
-  <img src="assets/images/rubrics-bg1.svg" alt="" class="rubric-detail__bg-deco" aria-hidden="true">
-  <img src="assets/images/yurt.svg" alt="" class="rubric-detail__bg-yurt" aria-hidden="true">
+  <div class="rubric-detail__bg-viewport">
+    <div class="rubric-detail__bg-deco-wrap">
+      <img src="assets/images/rubrics-bg1.svg" alt="" class="rubric-detail__bg-deco rubric-detail__bg-deco--left" aria-hidden="true">
+      <img src="assets/images/rubrics-bg1.svg" alt="" class="rubric-detail__bg-deco rubric-detail__bg-deco--right" aria-hidden="true">
+    </div>
+    <img src="assets/images/yurt.svg" alt="" class="rubric-detail__bg-yurt" aria-hidden="true">
+    <img src="assets/images/rubrics-bg1.svg" alt="" class="rubric-detail__bg-deco-bottom" aria-hidden="true">
+  </div>
 
   <div class="rubric-detail__inner">
 
-    <!-- Иконка + заголовок рубрики -->
     <div class="rubric-detail__header">
-      <img [src]="rubricIcon()" [alt]="rubricTitle()" class="rubric-detail__rubric-icon">
+      <h1 class="rubric-detail__rubric-title">{{ rubricTitle() }}</h1>
     </div>
 
-    <!-- Сетка статей (3 за раз) -->
     <div class="rubric-detail__grid">
 
       <ng-container *ngFor="let article of currentPageArticles(); let i = index">
@@ -20,35 +23,22 @@
           [class.rubric-detail__card--active]="selectedArticle()?.id === article.id"
           (click)="toggleArticle(article)"
         >
-          <!-- Изображение статьи -->
-          <div class="rubric-detail__card-img-wrap">
-            <img
-              *ngIf="article.image"
-              [src]="article.image"
-              [alt]="article.title[currentLang()]"
-              class="rubric-detail__card-img"
-            >
-            <div *ngIf="!article.image" class="rubric-detail__card-img-placeholder"></div>
-          </div>
 
-          <!-- Заголовок карточки -->
           <div class="rubric-detail__card-title">
             {{ article.title[currentLang()] }}
           </div>
         </button>
       </ng-container>
 
-      <!-- Пустые плейсхолдеры если статей меньше 3 -->
       <ng-container *ngFor="let _ of [].constructor(ITEMS_PER_PAGE - currentPageArticles().length)">
         <div class="rubric-detail__card rubric-detail__card--empty">
           <div class="rubric-detail__card-img-wrap rubric-detail__card-img-placeholder"></div>
-          <div class="rubric-detail__card-title rubric-detail__card-title--placeholder">?</div>
+          <div class="rubric-detail__card-title rubric-detail__card-title--placeholder"></div>
         </div>
       </ng-container>
 
     </div>
 
-    <!-- Пагинация -->
     <div class="rubric-detail__pagination" *ngIf="totalPages() > 1">
       <button
         class="rubric-detail__arrow"
@@ -77,13 +67,7 @@
       <p class="rubric-detail__article-date" *ngIf="selectedArticle()!.date">
         {{ selectedArticle()!.date![currentLang()] }}
       </p>
-      <div class="rubric-detail__article-body">
-        <p
-          *ngFor="let para of paragraphs(selectedArticle()!.body[currentLang()])"
-          class="rubric-detail__article-para"
-          [innerHTML]="para"
-        ></p>
-      </div>
+      <div class="rubric-detail__article-body" [innerHTML]="safeBody()"></div>
     </article>
 
   </div>

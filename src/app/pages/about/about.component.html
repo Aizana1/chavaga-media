@@ -2,11 +2,12 @@
   <div class="about__inner">
 
     <div class="about__title-block">
-      <h1 class="about__title">{{ lang.translations().about.title }}</h1>
+      <h1 class="about__title" [class.about__title--tuv]="lang.language() === 'tuv'">{{ lang.translations().about.title }}</h1>
     </div>
 
     <div class="about__photo">
       <img src="assets/images/about.png" alt="О нас" class="about__photo-img">
+      <img src="assets/images/Chavaga-media.svg" alt="" class="about__photo-logo" aria-hidden="true">
     </div>
 
     <div class="about__content">

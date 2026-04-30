@@ -23,6 +23,10 @@
   padding: 2.5rem;
 }
 
+.hero__tagline-wrap {
+  width: 380px;
+}
+
 .hero__tagline {
   color: #fff;
   font-weight: 600;
@@ -62,8 +66,9 @@
   }
 
   .hero__tagline {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 10%;
     padding-bottom: 66px;
     padding-left: 40px;
   }
