@@ -3,9 +3,7 @@
     <div class="contacts__content">
       <h1 class="contacts__title">{{ lang.translations().contacts.title }}</h1>
 
-      <p class="contacts__text">
-        {{ lang.translations().contacts.body1 }}<a href="mailto:chavaga.media@gmail.com" class="contacts__link">{{ lang.translations().contacts.email }}</a>
-      </p>
+      <p class="contacts__text" [innerHTML]="safeBody1()"></p>
 
       <p class="contacts__text">
         {{ lang.translations().contacts.body2 }}<br>

@@ -237,6 +237,60 @@
 }
 
 :host ::ng-deep .rubric-detail__article-body {
+  .compare-table {
+    display: flex;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: #4C0263;
+  }
+
+  .compare-table__group {
+    display: flex;
+    flex-direction: column;
+
+    &:first-child {
+      flex: 3;
+
+      .compare-table__row {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 16px;
+      }
+    }
+
+    &:last-child {
+      flex: 2;
+
+      .compare-table__row {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        div:first-child {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .compare-table__row {
+    padding: 16px 10px;
+    line-height: 1.5;
+    vertical-align: top;
+
+    & + .compare-table__row {
+      border-top: 1px solid transparent;
+    }
+
+    &--head div {
+      font-weight: 700;
+    }
+
+    div:first-child {
+      font-weight: 700;
+    }
+  }
+
   p {
     font-size: 20px;
     line-height: 1.75;
@@ -365,6 +419,29 @@
 
     figure figcaption {
       font-size: 12px;
+    }
+
+    .compare-table {
+      flex-direction: column;
+      gap: 32px;
+      font-size: 12px;
+
+      .compare-table__group {
+        &:last-child {
+          .compare-table__row {
+            grid-template-columns: 1fr 2fr;
+
+            div:first-child {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .compare-table__row {
+        padding: 10px 0;
+        gap: 12px;
+      }
     }
   }
 }

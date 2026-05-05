@@ -60,7 +60,7 @@
     </div>
 
     <!-- Развёрнутая статья -->
-    <article class="rubric-detail__article" *ngIf="selectedArticle()">
+    <article class="rubric-detail__article" *ngIf="selectedArticle()" #articleRef>
       <h2 class="rubric-detail__article-title">
         {{ selectedArticle()!.title[currentLang()] }}
       </h2>

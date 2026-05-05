@@ -33,7 +33,7 @@ export interface MerchTranslations {
 export interface ContactsTranslations {
   title: string;
   body1: string;
-  email: string;
+  email?: string;
   body2: string;
   instagram: string;
   telegram: string;
@@ -96,8 +96,7 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     },
     contacts: {
       title: 'КОНТАКТЫ:',
-      body1: 'Если вы хотите поделиться с нами историей, материалами или предложить идею для текста, вы можете написать нам на почту\u00a0–\u00a0',
-      email: 'chavaga.media@gmail.com',
+      body1: `Если вы хотите поделиться с нами историей, материалами или предложить идею для текста, вы можете написать нам на почту\u00a0–\u00a0 <b><a href="mailto:chavaga.media@gmail.com">chavaga.media@gmail.com</a></b>`,
       body2: 'Подпишитесь на наши социальные сети:',
       instagram: '@chavaga.media',
       telegram: '@chavaga_media',
@@ -153,10 +152,9 @@ export const TRANSLATIONS: Record<Language, Translations> = {
       ],
     },
     contacts: {
-      title: 'ХАРЫЛЗААЛАР:',
-      body1: 'Бистиң-биле төөгүңерни, материалдарыңарны үлежип е текст идеязын саналдаар болзуңарза, бистиң почтавыска бижип болур силер\u00a0–\u00a0',
-      email: 'chavaga.media@gmail.com',
-      body2: 'Бистиң социал четкилеривиске бижидиниңер:',
+      title: 'ХАРЫЛЗАА:',
+      body1: `Биске бодуңарның төөгүңер, материалдар азы өске бодал-саналыңар-биле үлежиксеп турар болзуңарза, бистиң почтавысче <b><a href="mailto:chavaga.media@gmail.com">chavaga.media@gmail.com</a></b> бижип болур силер.`,
+      body2: 'Бистиң социал четкилерге бижиттинип алыңар:',
       instagram: '@chavaga.media',
       telegram: '@chavaga_media',
     },

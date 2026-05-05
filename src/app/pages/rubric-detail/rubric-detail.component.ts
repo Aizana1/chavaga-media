@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -18,6 +18,8 @@ export class RubricDetailComponent implements OnInit {
   lang = inject(LanguageService);
   route = inject(ActivatedRoute);
   sanitizer = inject(DomSanitizer);
+
+  @ViewChild('articleRef') articleRef?: ElementRef<HTMLElement>;
 
   readonly ITEMS_PER_PAGE = 5;
 
@@ -68,9 +70,13 @@ export class RubricDetailComponent implements OnInit {
   }
 
   toggleArticle(article: Article) {
-    this.selectedArticle.set(
-      this.selectedArticle()?.id === article.id ? null : article
-    );
+    const opening = this.selectedArticle()?.id !== article.id;
+    this.selectedArticle.set(opening ? article : null);
+    if (opening) {
+      setTimeout(() => {
+        this.articleRef?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
   }
 
   prevPage() {
