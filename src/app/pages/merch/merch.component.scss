@@ -153,9 +153,21 @@
 
 @media (max-width: 1024px) and (min-width: 769px) {
   .merch__bg-wrap {
-    flex-direction: column;
-    justify-content: flex-end;
-    flex-wrap: wrap
+    flex-direction: row;
+    flex-wrap: nowrap;
+    bottom: 0;
+    top: auto;
+    max-height: 560px;
+    height: 100%;
+    padding-top: 80px;
+  }
+
+  .merch__bg-left {
+    width: 55%;
+  }
+
+  .merch__bg-right {
+    width: 45%;
   }
 }
 
@@ -167,9 +179,12 @@
 
   .merch__bg-wrap {
     flex-direction: column;
-    justify-content: flex-end;
-    align-content: flex-end;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    top: calc(40px + 22px + 50px + 20px); /* padding-top + title + gap + 20px */
+    bottom: auto;
+    max-height: none;
+    height: auto;
+    padding-top: 0;
   }
 
   .merch__bg-left {
