@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../services/language.service';
 
@@ -65,6 +65,8 @@ export class ComicsComponent {
   comics = COMICS;
   selectedIndex = signal<number | null>(null);
 
+  @ViewChild('comicViewer') comicViewer!: ElementRef;
+
   currentLang = computed(() => this.lang.language() as 'rus' | 'tuv');
 
   constructor() {
@@ -78,8 +80,21 @@ export class ComicsComponent {
     });
   }
 
+  isLoading = signal(false);
+
   toggle(index: number) {
-    this.selectedIndex.set(this.selectedIndex() === index ? null : index);
+    const isOpening = this.selectedIndex() !== index;
+    this.selectedIndex.set(isOpening ? index : null);
+    if (isOpening) {
+      this.isLoading.set(true);
+      setTimeout(() => {
+        this.comicViewer?.nativeElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  }
+
+  onPageLoad() {
+    this.isLoading.set(false);
   }
 
   selectedComic = computed(() => {

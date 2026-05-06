@@ -25,12 +25,17 @@
         </button>
       </div>
 
-      <div class="comics__viewer" *ngIf="selectedComic()">
+      <div class="comics__viewer" *ngIf="selectedComic()" #comicViewer>
+        <div class="comics__spinner" *ngIf="isLoading()" aria-label="Загрузка">
+          <div class="comics__spinner-ring"></div>
+        </div>
         <img
-          *ngFor="let page of selectedPages()"
+          *ngFor="let page of selectedPages(); let last = last"
           [src]="page"
           [alt]="selectedComic()!.title[currentLang()]"
           class="comics__page"
+          [class.comics__page--hidden]="isLoading()"
+          (load)="last && onPageLoad()"
         >
       </div>
     </div>

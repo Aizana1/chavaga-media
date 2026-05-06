@@ -155,6 +155,7 @@
   .merch__bg-wrap {
     flex-direction: column;
     justify-content: flex-end;
+    flex-wrap: wrap
   }
 }
 
@@ -167,6 +168,8 @@
   .merch__bg-wrap {
     flex-direction: column;
     justify-content: flex-end;
+    align-content: flex-end;
+    flex-wrap: wrap;
   }
 
   .merch__bg-left {
