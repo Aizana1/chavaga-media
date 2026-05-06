@@ -129,6 +129,21 @@
   }
 }
 
+.exhibition__video-wrap {
+  width: 100%;
+  max-width: 860px;
+  margin-top: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(76, 2, 99, 0.18);
+}
+
+.exhibition__video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 1024px) and (min-width: 769px) {
   .exhibition__bg-deco-bottom {
     display: block;

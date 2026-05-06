@@ -19,6 +19,34 @@ const VIDEOS: VideoItem[] = [
     streamUrl: 'https://media.chavaga-media.com/rubrics/video/IMG_6431.mp4',
     type: 'direct',
   },
+  {
+    id: 'rubric-video-3',
+    thumbnail: 'https://media.chavaga-media.com/rubrics/video/photo_2026-05-06%2020.08.36.jpeg',
+    title: { rus: '100 лет истории тувинской красоты', tuv: '100 лет истории тувинской красоты' },
+    streamUrl: 'https://media.chavaga-media.com/rubrics/video/IMG_6540.MP4',
+    type: 'direct',
+  },
+  {
+    id: 'rubric-video-4',
+    thumbnail: 'https://media.chavaga-media.com/rubrics/video/photo_2026-05-06%2020.08.38.jpeg',
+    title: { rus: 'День коляски: удобен ли Кызыл для мам', tuv: 'День коляски: удобен ли Кызыл для мам' },
+    streamUrl: 'https://media.chavaga-media.com/rubrics/video/IMG_6542.MP4',
+    type: 'direct',
+  },
+  {
+    id: 'rubric-video-5',
+    thumbnail: 'https://media.chavaga-media.com/rubrics/video/photo_2026-05-06%2020.08.41.jpeg',
+    title: { rus: 'Не служил не мужик? Разбираем токсичную маскулинность', tuv: 'Не служил не мужик? Разбираем токсичную маскулинность' },
+    streamUrl: 'https://media.chavaga-media.com/rubrics/video/IMG_6543.MP4',
+    type: 'direct',
+  },
+  {
+    id: 'rubric-video-6',
+    thumbnail: 'https://media.chavaga-media.com/rubrics/video/photo_2026-05-06%2020.08.43.jpeg',
+    title: { rus: 'Видео к 8 марта с разными поколениями тувинок', tuv: 'Видео к 8 марта с разными поколениями тувинок' },
+    streamUrl: 'https://media.chavaga-media.com/rubrics/video/IMG_6543.MP4',
+    type: 'direct',
+  },
 ];
 
 @Component({

@@ -4,6 +4,17 @@
       <h1 class="exhibition__title">{{ title[lang.language()] }}</h1>
       <div class="exhibition__body" [innerHTML]="safeBody()"></div>
     </article>
-  </div>
 
+    <div class="exhibition__video-wrap">
+      <video
+        class="exhibition__video"
+        src="https://media.chavaga-media.com/projects/IMG_6541.MP4"
+        controls
+        playsinline
+        preload="metadata"
+        width="200px"
+      ></video>
+    </div>
+
+  </div>
 </section>
