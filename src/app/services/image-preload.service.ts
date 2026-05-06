@@ -43,7 +43,11 @@ const IMAGES: string[] = [
 @Injectable({ providedIn: 'root' })
 export class ImagePreloadService {
   preloadAll(): void {
-    IMAGES.forEach(src => {
+    this.preloadUrls(IMAGES);
+  }
+
+  preloadUrls(urls: string[]): void {
+    urls.forEach(src => {
       const img = new Image();
       img.src = src;
     });

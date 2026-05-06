@@ -10,7 +10,7 @@
     <div class="projects__list">
       <a
         *ngFor="let item of lang.translations().projects.items; let i = index"
-        routerLink="/"
+        [routerLink]="i === 0 ? '/projects/zhenshchina-zhenshchine-dom' : i === 1 ? '/projects/telo-i-telesnost' : i === 2 ? '/projects/psikhologicheskaya-gruppa' : i === 3 ? '/projects/o-chem-mechtayut-tuvinki' : '/'"
         class="projects__item"
       >
         <img [src]="ornaments[i]" alt="" class="projects__ornament projects__ornament--left" aria-hidden="true">

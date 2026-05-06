@@ -1,0 +1,26 @@
+<section class="calendar">
+  <div class="calendar__inner">
+
+    <h1 class="calendar__title">{{ content[currentLang()].title }}</h1>
+
+    <div class="calendar__layout">
+
+      <div class="calendar__img-wrap">
+        <img [src]="calendarSvg" alt="Фем-календарь" class="calendar__img">
+      </div>
+
+      <div class="calendar__right">
+
+        <div class="calendar__buttons">
+          <a [href]="calendarJpg" target="_blank" rel="noopener" class="calendar__btn">
+            {{ content[currentLang()].downloadBtn }}
+          </a>
+        </div>
+
+        <img [src]="photoUrl" alt="" class="calendar__photo" aria-hidden="true">
+
+      </div>
+
+    </div>
+  </div>
+</section>

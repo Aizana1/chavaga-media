@@ -4,6 +4,15 @@ import { AboutComponent } from './pages/about/about.component';
 import { RubricsComponent } from './pages/rubrics/rubrics.component';
 import { RubricDetailComponent } from './pages/rubric-detail/rubric-detail.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { PhotoGalleryComponent } from './pages/photo-gallery/photo-gallery.component';
+import { ExhibitionComponent } from './pages/exhibition/exhibition.component';
+import { SupportGroupComponent } from './pages/support-group/support-group.component';
+import { VideoGalleryComponent } from './pages/video-gallery/video-gallery.component';
+import { RubricVideoComponent } from './pages/rubric-video/rubric-video.component';
+import { ComicsComponent } from './pages/comics/comics.component';
+import { StickersComponent } from './pages/stickers/stickers.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
+import { ShagaaCalendarComponent } from './pages/shagaa-calendar/shagaa-calendar.component';
 import { MerchComponent } from './pages/merch/merch.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 
@@ -11,8 +20,17 @@ export const routes: Routes = [
   { path: '', component: HeroComponent },
   { path: 'about', component: AboutComponent },
   { path: 'rubrics', component: RubricsComponent },
+  { path: 'rubrics/video', component: RubricVideoComponent },
   { path: 'rubrics/:slug', component: RubricDetailComponent },
   { path: 'projects', component: ProjectsComponent },
+  { path: 'projects/telo-i-telesnost', component: PhotoGalleryComponent },
+  { path: 'projects/zhenshchina-zhenshchine-dom', component: ExhibitionComponent },
+  { path: 'projects/psikhologicheskaya-gruppa', component: SupportGroupComponent },
+  { path: 'projects/o-chem-mechtayut-tuvinki', component: VideoGalleryComponent },
+  { path: 'merch/comics', component: ComicsComponent },
+  { path: 'merch/stickers', component: StickersComponent },
+  { path: 'merch/calendar', component: CalendarComponent },
+  { path: 'merch/shagaa-calendar', component: ShagaaCalendarComponent },
   { path: 'merch', component: MerchComponent },
   { path: 'contacts', component: ContactsComponent },
 ];

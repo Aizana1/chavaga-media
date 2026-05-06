@@ -1,0 +1,39 @@
+<section class="comics">
+
+
+
+  <div class="comics__inner">
+
+    <h1 class="comics__title">{{ currentLang() === 'rus' ? 'КОМИКСЫ' : 'КОМИКСТЕР' }}</h1>
+
+    <div class="comics__illustrations">
+      <img src="assets/images/comics-bg1.svg" alt="" class="comics__illustration comics__illustration--1" aria-hidden="true">
+      <img src="assets/images/comics-bg2.svg" alt="" class="comics__illustration comics__illustration--2" aria-hidden="true">
+    </div>
+
+    <div class="comics__content">
+      <img src="assets/images/comics-bg.svg" alt="" class="comics__bg" aria-hidden="true">
+
+      <div class="comics__grid">
+        <button
+          *ngFor="let comic of comics; let i = index"
+          class="comics__card"
+          [class.comics__card--active]="selectedIndex() === i"
+          (click)="toggle(i)"
+        >
+          <div class="comics__card-title">{{ comic.title[currentLang()] }}</div>
+        </button>
+      </div>
+
+      <div class="comics__viewer" *ngIf="selectedComic()">
+        <img
+          *ngFor="let page of selectedPages()"
+          [src]="page"
+          [alt]="selectedComic()!.title[currentLang()]"
+          class="comics__page"
+        >
+      </div>
+    </div>
+
+  </div>
+</section>

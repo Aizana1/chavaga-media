@@ -1,0 +1,133 @@
+.calendar {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+}
+
+.calendar__inner {
+  width: 100%;
+  padding: 60px 70px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.calendar__title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+  color: #4C0263;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+}
+
+.calendar__layout {
+  display: grid;
+  grid-template-columns: 55% 1fr;
+  gap: 48px;
+  width: 100%;
+  align-items: start;
+}
+
+.calendar__img-wrap {
+  width: 100%;
+}
+
+.calendar__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.calendar__right {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.calendar__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+}
+
+.calendar__btn {
+  display: block;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  background: rgba(176, 215, 240, 0.55);
+  border-radius: 24px;
+  padding: 28px 32px;
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 22px;
+  font-weight: normal;
+  color: #4C0263;
+  text-align: center;
+  text-decoration: none;
+  white-space: pre-line;
+  line-height: 1.3;
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover {
+    background: rgba(176, 215, 240, 0.8);
+    transform: scale(1.02);
+  }
+}
+
+.calendar__photo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .calendar__inner {
+    padding: 50px 40px 60px;
+    gap: 36px;
+  }
+
+  .calendar__layout {
+    grid-template-columns: 52% 1fr;
+    gap: 32px;
+  }
+
+  .calendar__btn {
+    font-size: 18px;
+    padding: 22px 24px;
+  }
+
+  .calendar__title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar__inner {
+    padding: 40px 16px 60px;
+    gap: 28px;
+  }
+
+  .calendar__title {
+    font-size: 28px;
+  }
+
+  .calendar__layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .calendar__right {
+    gap: 24px;
+  }
+
+  .calendar__btn {
+    font-size: 16px;
+    padding: 20px 20px;
+    border-radius: 18px;
+  }
+}

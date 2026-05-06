@@ -1,0 +1,46 @@
+<section class="photo-gallery">
+
+  <div class="photo-gallery__bg-viewport">
+    <img src="assets/images/yurt.svg" alt="" class="photo-gallery__bg-yurt" aria-hidden="true">
+  </div>
+
+  <div class="photo-gallery__inner">
+    <h1 class="photo-gallery__title">ФОТОГРАФИИ ИЗ ПРОЕКТА<br>«ТЕЛО И ТЕЛЕСНОСТЬ»</h1>
+
+    <div class="photo-gallery__grid">
+      <button
+        *ngFor="let photo of photos; let i = index"
+        class="photo-gallery__item"
+        (click)="open(i)"
+      >
+        <img [src]="photo" [alt]="'Фото ' + (i + 1)" class="photo-gallery__thumb">
+      </button>
+    </div>
+  </div>
+
+  <div class="photo-gallery__modal" *ngIf="activeIndex() !== null" (click)="close()">
+    <button class="photo-gallery__modal-close" (click)="close()" aria-label="Закрыть">✕</button>
+
+    <button
+      class="photo-gallery__modal-arrow photo-gallery__modal-arrow--prev"
+      (click)="$event.stopPropagation(); prev()"
+      [class.photo-gallery__modal-arrow--hidden]="activeIndex() === 0"
+      aria-label="Предыдущее"
+    >‹</button>
+
+    <img
+      [src]="photos[activeIndex()!]"
+      class="photo-gallery__modal-img"
+      (click)="$event.stopPropagation()"
+      alt="Фото"
+    >
+
+    <button
+      class="photo-gallery__modal-arrow photo-gallery__modal-arrow--next"
+      (click)="$event.stopPropagation(); next()"
+      [class.photo-gallery__modal-arrow--hidden]="activeIndex() === photos.length - 1"
+      aria-label="Следующее"
+    >›</button>
+  </div>
+
+</section>

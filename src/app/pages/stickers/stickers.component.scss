@@ -1,0 +1,253 @@
+.stickers {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.stickers__inner {
+  width: 100%;
+  padding: 80px 70px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.stickers__title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+  color: #4C0263;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+}
+
+.stickers__layout {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 38% auto;
+  grid-template-areas:
+    "btn     collage"
+    "shop    collage";
+  column-gap: 40px;
+  align-items: start;
+}
+
+/* Розовый фон: grid-item, стоит первым в DOM → контент рисуется поверх */
+.stickers__pink-bg {
+  grid-column: 1 / -1;
+  grid-row: 2 / 4;
+  background: #EBBFBF;
+  margin-left: -70px;
+  margin-right: -70px;
+}
+
+.stickers__btn {
+  grid-area: btn;
+  display: block;
+  background: #FFF2BF;
+  border-radius: 40px;
+  padding: 20px 28px;
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 22px;
+  color: #4C0263;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.2;
+  align-self: start;
+  margin: 40px;
+  z-index: 2;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.stickers__shop {
+  grid-area: shop;
+  padding: 28px 0 0;
+}
+
+.stickers-right {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.stickers__brochure-wrap {
+  position: relative;
+  width: 960px;
+  margin-left: -70px;
+  margin-top: -600px;
+}
+
+.stickers__shop-text {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  z-index: 1;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #4C0263;
+  line-height: 30px;
+  margin: 0;
+  text-transform: uppercase;
+  max-width: 350px;
+}
+
+.stickers__brochure {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  &--mobile {
+    display: none;
+  }
+}
+
+.stickers__collage {
+  grid-area: collage;
+  width: 100%;
+  height: auto;
+  display: block;
+  align-self: start;
+  z-index: 1;
+}
+
+.stickers__phone {
+  grid-column: 2;
+  grid-row: 3;
+  width: 30%;
+  height: auto;
+  display: block;
+  align-self: end;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .stickers__inner {
+    padding: 60px 40px 0;
+  }
+
+  .stickers__pink-bg {
+    margin-left: -40px;
+    margin-right: -40px;
+  }
+
+  .stickers__brochure-wrap {
+    margin-left: -40px;
+    margin-top: 0;
+  }
+
+  .stickers__btn {
+    font-size: 18px;
+    z-index: 3;
+  }
+
+  .stickers__shop-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stickers__inner {
+    padding: 60px 16px 0;
+    gap: 0;
+  }
+
+  .stickers__title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .stickers__layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+  }
+
+  .stickers__pink-bg {
+    display: none;
+  }
+
+  .stickers__phone {
+    position: absolute;
+    top: -60px;
+    left: -16px;
+    width: 32%;
+    z-index: 0;
+    padding-bottom: 0;
+  }
+
+  .stickers__btn {
+    font-size: 16px;
+    padding: 16px 20px;
+    position: relative;
+    margin-bottom: 16px;
+    z-index: 3;
+  }
+
+  .stickers__shop {
+    position: relative;
+    padding: 24px 0 0;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: -9999px;
+      left: -16px;
+      right: -16px;
+      background: #E5BBBC;
+      z-index: -1;
+      margin-top: -60px;
+    }
+  }
+
+  .stickers__brochure-wrap {
+    position: relative;
+    width: 100vw;
+    margin-left: -16px;
+    margin-top: 0;
+  }
+
+  .stickers__brochure--desktop {
+    display: none;
+  }
+
+  .stickers__brochure--mobile {
+    display: block;
+  }
+
+  .stickers__shop-text {
+    position: absolute;
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: auto;
+    font-size: 10px;
+    max-width: 190px;
+    line-height: 20px;
+  }
+
+  .stickers__collage {
+    position: relative;
+    z-index: 1;
+    padding: 0 0 40px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      left: -16px;
+      right: -16px;
+      background: #EBBFBF;
+      z-index: -1;
+    }
+  }
+}

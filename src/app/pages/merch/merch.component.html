@@ -1,6 +1,5 @@
 <section class="merch">
 
-  <!-- Фоновый контейнер -->
   <div class="merch__bg-wrap">
     <img src="assets/images/merch-bg1.svg" alt="" class="merch__bg-left" aria-hidden="true">
     <div class="merch__bg-right">
@@ -9,13 +8,13 @@
     </div>
   </div>
 
-  <!-- Контент -->
   <div class="merch__inner">
     <h1 class="merch__title">{{ lang.translations().merch.title }}</h1>
 
     <div class="merch__grid">
       <a
         *ngFor="let item of lang.translations().merch.items; let i = index"
+        [routerLink]="i === 0 ? '/merch/comics' : i === 1 ? '/merch/stickers' : i === 2 ? '/merch/calendar' : i === 3 ? '/merch/shagaa-calendar' : null"
         href="#"
         class="merch__card"
       >

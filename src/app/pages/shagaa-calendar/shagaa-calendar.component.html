@@ -1,0 +1,19 @@
+<section class="shagaa">
+  <div class="shagaa__inner">
+
+    <h1 class="shagaa__title">{{ content[currentLang()].title }}</h1>
+
+    <div class="shagaa__layout">
+      <div class="shagaa__left">
+        <a [href]="calendarJpg" target="_blank" rel="noopener" class="shagaa__btn">
+          {{ content[currentLang()].downloadBtn }}
+        </a>
+      </div>
+
+      <div class="shagaa__img-wrap">
+        <img [src]="calendarSvg" alt="Календарь Шагаа 2026" class="shagaa__img">
+      </div>
+
+    </div>
+  </div>
+</section>

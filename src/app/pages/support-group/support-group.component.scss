@@ -1,0 +1,82 @@
+.support-group {
+  position: relative;
+  min-height: calc(100vh - 80px);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.support-group__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 70px 80px;
+  width: 100%;
+}
+
+.support-group__article {
+  width: 100%;
+  max-width: 860px;
+  padding: 40px 48px;
+}
+
+.support-group__title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 28px;
+  font-weight: normal;
+  color: #4C0263;
+  line-height: 1.3;
+  margin: 0 0 32px;
+  white-space: pre-line;
+  text-align: center;
+}
+
+.support-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+:host ::ng-deep .support-group__body {
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 1.75;
+    color: #4C0263;
+    margin: 0;
+    text-indent: 2em;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .support-group__inner {
+    padding: 50px 40px 70px;
+  }
+
+  .support-group__article {
+    padding: 32px 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .support-group__inner {
+    padding: 40px 16px 60px;
+  }
+
+  .support-group__article {
+    padding: 24px 0;
+  }
+
+  .support-group__title {
+    font-size: 21px;
+  }
+
+  :host ::ng-deep .support-group__body {
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+    }
+  }
+}
