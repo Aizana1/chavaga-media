@@ -39,4 +39,9 @@ export class App {
     const url = this.currentRoute() ?? '';
     return url === '/' || url === '';
   }
+
+  isAdmin() {
+    const url = this.currentRoute() ?? '';
+    return url.startsWith('/admin');
+  }
 }

@@ -1,5 +1,5 @@
-<app-header />
-<main [class.main--full-width]="isFullWidth()">
+<app-header *ngIf="!isAdmin()" />
+<main [class.main--full-width]="isFullWidth()" [class.main--admin]="isAdmin()">
   <router-outlet />
 </main>
 <app-footer *ngIf="isHome()" />

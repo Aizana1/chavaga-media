@@ -1,0 +1,39 @@
+<div class="admin-login">
+  <form class="admin-login__box" (ngSubmit)="submit()">
+    <h1 class="admin-login__title">
+      <img src="assets/images/logo.svg" alt="" class="admin-login__logo">
+      
+    </h1>
+    <p class="admin-login__subtitle">Вход для администратора</p>
+
+    <label class="admin-login__field">
+      <span>Почта</span>
+      <input
+        type="email"
+        autocomplete="username"
+        [ngModel]="email()"
+        (ngModelChange)="email.set($event)"
+        name="email"
+        required
+      >
+    </label>
+
+    <label class="admin-login__field">
+      <span>Пароль</span>
+      <input
+        type="password"
+        autocomplete="current-password"
+        [ngModel]="password()"
+        (ngModelChange)="password.set($event)"
+        name="password"
+        required
+      >
+    </label>
+
+    <p class="admin-login__error" *ngIf="error()">{{ error() }}</p>
+
+    <button class="admin-login__submit" type="submit" [disabled]="loading()">
+      {{ loading() ? 'Входим…' : 'Войти' }}
+    </button>
+  </form>
+</div>

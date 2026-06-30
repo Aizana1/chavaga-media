@@ -1,0 +1,94 @@
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f3e9fc 0%, #e9d3fb 100%);
+  padding: 24px;
+}
+
+.admin-login__box {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 24px 64px rgba(76, 2, 99, 0.18);
+}
+
+.admin-login__title {
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 28px;
+  font-weight: normal;
+  color: #4C0263;
+  margin: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.admin-login__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: rgba(76, 2, 99, 0.55);
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.admin-login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #4C0263;
+
+  input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 12px 14px;
+    border: 2px solid rgba(76, 2, 99, 0.2);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #4C0263;
+    }
+  }
+}
+
+.admin-login__error {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  color: #c0245f;
+  margin: 0;
+}
+
+.admin-login__submit {
+  margin-top: 8px;
+  padding: 13px;
+  border: none;
+  border-radius: 12px;
+  background: #4C0263;
+  color: #fff;
+  font-family: 'NauryzRedKeds', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}

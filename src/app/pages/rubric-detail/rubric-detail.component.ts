@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { LanguageService } from '../../services/language.service';
+import { ArticleStoreService } from '../../services/article-store.service';
 import { Article } from '../../models/article.model';
 import { ARTICLES } from '../../data/articles.data';
 import { RUBRIC_SLUGS } from '../../data/rubrics.data';
@@ -18,6 +19,10 @@ export class RubricDetailComponent implements OnInit {
   lang = inject(LanguageService);
   route = inject(ActivatedRoute);
   sanitizer = inject(DomSanitizer);
+  store = inject(ArticleStoreService);
+
+  /** Статьи, опубликованные через админку (Firestore). */
+  private dynamicArticles: Article[] = [];
 
   @ViewChild('articleRef') articleRef?: ElementRef<HTMLElement>;
 
@@ -59,11 +64,20 @@ export class RubricDetailComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(article.body[this.currentLang()]);
   });
 
-  ngOnInit() {
+  async ngOnInit() {
+    // Подгружаем статьи из Firestore (если Firebase не настроен — просто пропускаем).
+    try {
+      this.dynamicArticles = await this.store.getAll();
+    } catch {
+      this.dynamicArticles = [];
+    }
+
     this.route.params.subscribe(params => {
       const slug = params['slug'] ?? '';
       this.slug.set(slug);
-      this.allArticles.set(ARTICLES.filter(a => a.rubricSlug === slug));
+      // Сначала новые (Firestore), затем статические из ARTICLES.
+      const all = [...this.dynamicArticles, ...ARTICLES];
+      this.allArticles.set(all.filter(a => a.rubricSlug === slug));
       this.currentPage.set(0);
       this.selectedArticle.set(null);
     });

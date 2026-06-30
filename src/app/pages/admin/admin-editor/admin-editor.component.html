@@ -1,0 +1,182 @@
+<div class="editor">
+  <header class="editor__top">
+    <h1 class="editor__brand">Чавага · Конструктор статей</h1>
+    <div class="editor__user">
+      <span>{{ userEmail() }}</span>
+      <button type="button" class="editor__logout" (click)="logout()">Выйти</button>
+    </div>
+  </header>
+
+  <div class="editor__layout">
+    <!-- Левая колонка: форма -->
+    <section class="editor__form">
+      <div class="editor__field">
+        <label>Рубрика</label>
+        <select [ngModel]="rubricSlug()" (ngModelChange)="rubricSlug.set($event)">
+          <option value="" disabled>— выберите рубрику —</option>
+          <option *ngFor="let r of rubricOptions" [value]="r.slug">{{ r.label }}</option>
+        </select>
+      </div>
+
+      <div class="editor__row">
+        <div class="editor__field">
+          <label>Заголовок (рус)</label>
+          <input [ngModel]="titleRus()" (ngModelChange)="titleRus.set($event)" placeholder="Название статьи">
+        </div>
+        <div class="editor__field">
+          <label>Заголовок (тув)</label>
+          <input [ngModel]="titleTuv()" (ngModelChange)="titleTuv.set($event)" placeholder="Чүүлдүң ады">
+        </div>
+      </div>
+
+      <div class="editor__row">
+        <div class="editor__field">
+          <label>Дата (рус, необязательно)</label>
+          <input [ngModel]="dateRus()" (ngModelChange)="dateRus.set($event)">
+        </div>
+        <div class="editor__field">
+          <label>Дата (тув, необязательно)</label>
+          <input [ngModel]="dateTuv()" (ngModelChange)="dateTuv.set($event)">
+        </div>
+      </div>
+
+      <div class="editor__field">
+        <label>Главное фото — ссылка Cloudflare (необязательно)</label>
+        <input [ngModel]="mainImage()" (ngModelChange)="mainImage.set($event)" placeholder="https://media.chavaga-media.com/...">
+      </div>
+
+      <hr class="editor__divider">
+
+      <h2 class="editor__section-title">Блоки статьи</h2>
+
+      <div class="editor__blocks">
+        <div class="editor__block" *ngFor="let block of blocks(); let i = index; trackBy: trackByIndex">
+          <div class="editor__block-head">
+            <span class="editor__block-type">{{ blockLabel(block.type) }}</span>
+            <div class="editor__block-actions">
+              <button type="button" (click)="moveBlock(i, -1)" [disabled]="i === 0" title="Вверх">↑</button>
+              <button type="button" (click)="moveBlock(i, 1)" [disabled]="i === blocks().length - 1" title="Вниз">↓</button>
+              <button type="button" class="editor__block-del" (click)="removeBlock(i)" title="Удалить">✕</button>
+            </div>
+          </div>
+
+          <ng-container *ngIf="block.type === 'image'">
+            <input
+              class="editor__block-input"
+              [ngModel]="block.url"
+              (ngModelChange)="updateBlock(i, 'url', $event)"
+              placeholder="Ссылка на фото из Cloudflare (https://media.chavaga-media.com/...)"
+            >
+            <div class="editor__row">
+              <input class="editor__block-input" [ngModel]="block.rus" (ngModelChange)="updateBlock(i, 'rus', $event)" placeholder="Подпись (рус, необяз.)">
+              <input class="editor__block-input" [ngModel]="block.tuv" (ngModelChange)="updateBlock(i, 'tuv', $event)" placeholder="Чазыг (тув, необяз.)">
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="block.type === 'heading'">
+            <div class="editor__row">
+              <div class="editor__rt-field">
+                <div class="editor__rt-toolbar">
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(hRus, i, 'rus', 'b')" title="Жирный"><b>Ж</b></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(hRus, i, 'rus', 'i')" title="Курсив"><i>К</i></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(hRus, i, 'rus', 's')" title="Зачёркнутый"><s>З</s></button>
+                </div>
+                <input #hRus class="editor__block-input" [ngModel]="block.rus" (ngModelChange)="updateBlock(i, 'rus', $event)" placeholder="Подзаголовок (рус)">
+              </div>
+              <div class="editor__rt-field">
+                <div class="editor__rt-toolbar">
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(hTuv, i, 'tuv', 'b')" title="Жирный"><b>Ж</b></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(hTuv, i, 'tuv', 'i')" title="Курсив"><i>К</i></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(hTuv, i, 'tuv', 's')" title="Зачёркнутый"><s>З</s></button>
+                </div>
+                <input #hTuv class="editor__block-input" [ngModel]="block.tuv" (ngModelChange)="updateBlock(i, 'tuv', $event)" placeholder="Кезек ат (тув)">
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="block.type === 'paragraph'">
+            <div class="editor__row">
+              <div class="editor__rt-field">
+                <div class="editor__rt-toolbar">
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(pRus, i, 'rus', 'b')" title="Жирный"><b>Ж</b></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(pRus, i, 'rus', 'i')" title="Курсив"><i>К</i></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(pRus, i, 'rus', 's')" title="Зачёркнутый"><s>З</s></button>
+                </div>
+                <textarea #pRus class="editor__block-input" rows="4" [ngModel]="block.rus" (ngModelChange)="updateBlock(i, 'rus', $event)" placeholder="Текст параграфа (рус)"></textarea>
+              </div>
+              <div class="editor__rt-field">
+                <div class="editor__rt-toolbar">
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(pTuv, i, 'tuv', 'b')" title="Жирный"><b>Ж</b></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(pTuv, i, 'tuv', 'i')" title="Курсив"><i>К</i></button>
+                  <button type="button" (mousedown)="$event.preventDefault()" (click)="wrapSelection(pTuv, i, 'tuv', 's')" title="Зачёркнутый"><s>З</s></button>
+                </div>
+                <textarea #pTuv class="editor__block-input" rows="4" [ngModel]="block.tuv" (ngModelChange)="updateBlock(i, 'tuv', $event)" placeholder="Параграф (тув)"></textarea>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <p class="editor__empty" *ngIf="blocks().length === 0">
+          Пока нет блоков. Добавьте подзаголовок, параграф или фотографию.
+        </p>
+      </div>
+
+      <div class="editor__add-bar">
+        <button type="button" (click)="addBlock('heading')">+ Подзаголовок</button>
+        <button type="button" (click)="addBlock('paragraph')">+ Параграф</button>
+        <button type="button" (click)="addBlock('image')">+ Фотография</button>
+      </div>
+
+      <p class="editor__msg editor__msg--ok" *ngIf="message()">{{ message() }}</p>
+      <p class="editor__msg editor__msg--err" *ngIf="error()">{{ error() }}</p>
+
+      <button class="editor__publish" type="button" (click)="publish()" [disabled]="!canPublish() || publishing()">
+        {{ publishing() ? 'Публикуем…' : 'Опубликовать пост' }}
+      </button>
+    </section>
+
+    <!-- Правая колонка: предпросмотр -->
+    <aside class="editor__preview">
+      <div class="editor__preview-head">
+        <h2>Предпросмотр</h2>
+        <div class="editor__lang-tabs">
+          <button type="button" [class.active]="previewLang() === 'rus'" (click)="previewLang.set('rus')">RUS</button>
+          <button type="button" [class.active]="previewLang() === 'tuv'" (click)="previewLang.set('tuv')">ТУВ</button>
+        </div>
+      </div>
+
+      <article class="editor__preview-article">
+        <h1 class="editor__preview-title">{{ previewTitle() || 'Заголовок статьи' }}</h1>
+        <img *ngIf="mainImage()" [src]="mainImage()" alt="" class="editor__preview-main-img">
+        <div class="editor__preview-body" [innerHTML]="previewBody()"></div>
+      </article>
+
+      <!-- Опубликованные статьи -->
+      <div class="editor__published">
+        <h2 class="editor__published-title">Опубликованные статьи</h2>
+
+        <p class="editor__empty" *ngIf="loadingList()">Загрузка…</p>
+        <p class="editor__empty" *ngIf="!loadingList() && published().length === 0">
+          Пока нет статей, опубликованных через админку.
+        </p>
+
+        <ul class="editor__published-list" *ngIf="!loadingList() && published().length > 0">
+          <li class="editor__published-item" *ngFor="let a of published()">
+            <div class="editor__published-info">
+              <span class="editor__published-name">{{ a.title.rus || a.title.tuv }}</span>
+              <span class="editor__published-rubric">{{ rubricLabel(a.rubricSlug) }}</span>
+            </div>
+            <button
+              type="button"
+              class="editor__published-del"
+              (click)="deleteArticle(a)"
+              [disabled]="deletingId() !== null"
+            >
+              {{ deletingId() === a.id ? 'Удаляем…' : 'Удалить' }}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>

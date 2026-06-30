@@ -15,6 +15,7 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
 import { ShagaaCalendarComponent } from './pages/shagaa-calendar/shagaa-calendar.component';
 import { MerchComponent } from './pages/merch/merch.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', component: HeroComponent },
@@ -33,4 +34,15 @@ export const routes: Routes = [
   { path: 'merch/shagaa-calendar', component: ShagaaCalendarComponent },
   { path: 'merch', component: MerchComponent },
   { path: 'contacts', component: ContactsComponent },
+  {
+    path: 'admin/login',
+    loadComponent: () =>
+      import('./pages/admin/admin-login/admin-login.component').then(m => m.AdminLoginComponent),
+  },
+  {
+    path: 'admin',
+    canActivate: [adminGuard],
+    loadComponent: () =>
+      import('./pages/admin/admin-editor/admin-editor.component').then(m => m.AdminEditorComponent),
+  },
 ];
